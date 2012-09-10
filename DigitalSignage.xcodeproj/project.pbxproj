@@ -1,0 +1,330 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7062351614A191780068D3A1 /* DSPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7062351514A191780068D3A1 /* DSPreferencesController.m */; };
+		7062351814A1918C0068D3A1 /* DSPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7062351714A1918C0068D3A1 /* DSPreferences.xib */; };
+		7063DDFA149B206100D96E38 /* WebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7063DDF9149B206100D96E38 /* WebController.m */; };
+		70848BE7149ABB3000B7DD9A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70848BE6149ABB3000B7DD9A /* Cocoa.framework */; };
+		70848BF1149ABB3000B7DD9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 70848BEF149ABB3000B7DD9A /* InfoPlist.strings */; };
+		70848BF3149ABB3000B7DD9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 70848BF2149ABB3000B7DD9A /* main.m */; };
+		70848BF7149ABB3000B7DD9A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 70848BF5149ABB3000B7DD9A /* Credits.rtf */; };
+		70848BFA149ABB3000B7DD9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 70848BF9149ABB3000B7DD9A /* AppDelegate.m */; };
+		70848BFD149ABB3000B7DD9A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70848BFB149ABB3000B7DD9A /* MainMenu.xib */; };
+		70848C04149ABB9100B7DD9A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70848C03149ABB9100B7DD9A /* WebKit.framework */; };
+		70A1F1E114AD8FFC00DE0476 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70A1F1E014AD8FFC00DE0476 /* Defaults.plist */; };
+		70BD3730149ABF2A00E5988A /* html in Resources */ = {isa = PBXBuildFile; fileRef = 70BD372F149ABF2A00E5988A /* html */; };
+		70D3C8E7149B57540088F627 /* signage2.icns in Resources */ = {isa = PBXBuildFile; fileRef = 70D3C8E6149B57540088F627 /* signage2.icns */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7062351414A191780068D3A1 /* DSPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPreferencesController.h; sourceTree = "<group>"; };
+		7062351514A191780068D3A1 /* DSPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPreferencesController.m; sourceTree = "<group>"; };
+		7062351714A1918C0068D3A1 /* DSPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DSPreferences.xib; sourceTree = "<group>"; };
+		7063DDF8149B206100D96E38 /* WebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebController.h; sourceTree = "<group>"; };
+		7063DDF9149B206100D96E38 /* WebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebController.m; sourceTree = "<group>"; };
+		70848BE2149ABB2F00B7DD9A /* DigitalSignage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigitalSignage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		70848BE6149ABB3000B7DD9A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		70848BE9149ABB3000B7DD9A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		70848BEA149ABB3000B7DD9A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		70848BEB149ABB3000B7DD9A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		70848BEE149ABB3000B7DD9A /* DigitalSignage-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DigitalSignage-Info.plist"; sourceTree = "<group>"; };
+		70848BF0149ABB3000B7DD9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		70848BF2149ABB3000B7DD9A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		70848BF4149ABB3000B7DD9A /* DigitalSignage-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DigitalSignage-Prefix.pch"; sourceTree = "<group>"; };
+		70848BF6149ABB3000B7DD9A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		70848BF8149ABB3000B7DD9A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		70848BF9149ABB3000B7DD9A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		70848BFC149ABB3000B7DD9A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		70848C03149ABB9100B7DD9A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		70A1F1E014AD8FFC00DE0476 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Defaults.plist; sourceTree = "<group>"; };
+		70BD372F149ABF2A00E5988A /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; name = html; path = DigitalSignage/html; sourceTree = "<group>"; };
+		70D3C8E6149B57540088F627 /* signage2.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = signage2.icns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		70848BDF149ABB2F00B7DD9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70848C04149ABB9100B7DD9A /* WebKit.framework in Frameworks */,
+				70848BE7149ABB3000B7DD9A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		70848BD7149ABB2F00B7DD9A = {
+			isa = PBXGroup;
+			children = (
+				70D3C8E6149B57540088F627 /* signage2.icns */,
+				70BD372F149ABF2A00E5988A /* html */,
+				70848BEC149ABB3000B7DD9A /* DigitalSignage */,
+				70848BE5149ABB2F00B7DD9A /* Frameworks */,
+				70848BE3149ABB2F00B7DD9A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		70848BE3149ABB2F00B7DD9A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70848BE2149ABB2F00B7DD9A /* DigitalSignage.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		70848BE5149ABB2F00B7DD9A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				70848C03149ABB9100B7DD9A /* WebKit.framework */,
+				70848BE6149ABB3000B7DD9A /* Cocoa.framework */,
+				70848BE8149ABB3000B7DD9A /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		70848BE8149ABB3000B7DD9A /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				70848BE9149ABB3000B7DD9A /* AppKit.framework */,
+				70848BEA149ABB3000B7DD9A /* CoreData.framework */,
+				70848BEB149ABB3000B7DD9A /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		70848BEC149ABB3000B7DD9A /* DigitalSignage */ = {
+			isa = PBXGroup;
+			children = (
+				70848BF8149ABB3000B7DD9A /* AppDelegate.h */,
+				70848BF9149ABB3000B7DD9A /* AppDelegate.m */,
+				7063DDF8149B206100D96E38 /* WebController.h */,
+				7063DDF9149B206100D96E38 /* WebController.m */,
+				70848BFB149ABB3000B7DD9A /* MainMenu.xib */,
+				7062351414A191780068D3A1 /* DSPreferencesController.h */,
+				7062351714A1918C0068D3A1 /* DSPreferences.xib */,
+				7062351514A191780068D3A1 /* DSPreferencesController.m */,
+				70848BED149ABB3000B7DD9A /* Supporting Files */,
+			);
+			path = DigitalSignage;
+			sourceTree = "<group>";
+		};
+		70848BED149ABB3000B7DD9A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				70A1F1E014AD8FFC00DE0476 /* Defaults.plist */,
+				70848BEE149ABB3000B7DD9A /* DigitalSignage-Info.plist */,
+				70848BEF149ABB3000B7DD9A /* InfoPlist.strings */,
+				70848BF2149ABB3000B7DD9A /* main.m */,
+				70848BF4149ABB3000B7DD9A /* DigitalSignage-Prefix.pch */,
+				70848BF5149ABB3000B7DD9A /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		70848BE1149ABB2F00B7DD9A /* DigitalSignage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70848C00149ABB3000B7DD9A /* Build configuration list for PBXNativeTarget "DigitalSignage" */;
+			buildPhases = (
+				70848BDE149ABB2F00B7DD9A /* Sources */,
+				70848BDF149ABB2F00B7DD9A /* Frameworks */,
+				70848BE0149ABB2F00B7DD9A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DigitalSignage;
+			productName = DigitalSignage;
+			productReference = 70848BE2149ABB2F00B7DD9A /* DigitalSignage.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		70848BD9149ABB2F00B7DD9A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 70848BDC149ABB2F00B7DD9A /* Build configuration list for PBXProject "DigitalSignage" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 70848BD7149ABB2F00B7DD9A;
+			productRefGroup = 70848BE3149ABB2F00B7DD9A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				70848BE1149ABB2F00B7DD9A /* DigitalSignage */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		70848BE0149ABB2F00B7DD9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70848BF1149ABB3000B7DD9A /* InfoPlist.strings in Resources */,
+				70848BF7149ABB3000B7DD9A /* Credits.rtf in Resources */,
+				70848BFD149ABB3000B7DD9A /* MainMenu.xib in Resources */,
+				70BD3730149ABF2A00E5988A /* html in Resources */,
+				70D3C8E7149B57540088F627 /* signage2.icns in Resources */,
+				7062351814A1918C0068D3A1 /* DSPreferences.xib in Resources */,
+				70A1F1E114AD8FFC00DE0476 /* Defaults.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		70848BDE149ABB2F00B7DD9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70848BF3149ABB3000B7DD9A /* main.m in Sources */,
+				70848BFA149ABB3000B7DD9A /* AppDelegate.m in Sources */,
+				7063DDFA149B206100D96E38 /* WebController.m in Sources */,
+				7062351614A191780068D3A1 /* DSPreferencesController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		70848BEF149ABB3000B7DD9A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70848BF0149ABB3000B7DD9A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		70848BF5149ABB3000B7DD9A /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70848BF6149ABB3000B7DD9A /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		70848BFB149ABB3000B7DD9A /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				70848BFC149ABB3000B7DD9A /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		70848BFE149ABB3000B7DD9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		70848BFF149ABB3000B7DD9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		70848C01149ABB3000B7DD9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DigitalSignage/DigitalSignage-Prefix.pch";
+				INFOPLIST_FILE = "DigitalSignage/DigitalSignage-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		70848C02149ABB3000B7DD9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DigitalSignage/DigitalSignage-Prefix.pch";
+				INFOPLIST_FILE = "DigitalSignage/DigitalSignage-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		70848BDC149ABB2F00B7DD9A /* Build configuration list for PBXProject "DigitalSignage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70848BFE149ABB3000B7DD9A /* Debug */,
+				70848BFF149ABB3000B7DD9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70848C00149ABB3000B7DD9A /* Build configuration list for PBXNativeTarget "DigitalSignage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70848C01149ABB3000B7DD9A /* Debug */,
+				70848C02149ABB3000B7DD9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 70848BD9149ABB2F00B7DD9A /* Project object */;
+}
