@@ -6,8 +6,8 @@
   4th qtr 2011
 */
 
-/*jshint forin:true, noarg:true, noempty:true, eqeqeq:true, bitwise:true, strict:true, undef:true, curly:true, browser:true, jquery:true, indent:2, maxerr:50 */
-/*global google,alert*/
+/*jshint forin:true, noarg:true, noempty:true, eqeqeq:true, bitwise:true, strict:true, undef:true, curly:true, browser:true, jquery:true, maxerr:50 */
+/*global google*/
 
 
 /*
@@ -64,7 +64,8 @@ var tickers = [];
     
     url {String} - the url of the script to append (absolute or relative to index.html)
 */
-function appendScript(url){
+function appendScript(url) {
+  "use strict";
 	var scriptTag = document.createElement("script");
 	scriptTag.setAttribute("type", "text/javascript");
 	scriptTag.setAttribute("src", url);
@@ -268,26 +269,7 @@ function Event(opts) {
 */
 function Ticker(opts) {
   "use strict";
-  var self = this;
-
-  if (typeof (opts) !== "undefined") {
-    this.element      = $(opts.element);
-    this.items        = opts.items || [];
-    this.speed        = opts.speed || 10000;
-    this.running      = opts.running || false;
-
-    // just to define these. maybe javascript should use .h files :P
-    this.currentItem  = 0;
-    this.interval     = null;
-    this.tickerHeight = 0;
-  }
-  
-  this.setSize();
-  if (this.running) {
-    this.start();
-  }
-  tickers.push(this);
-  
+    
   /*
   
     Function: this.addItem
@@ -419,6 +401,26 @@ function Ticker(opts) {
     
     this.element.find("img").css("height", this.tickerHeight + "px");
   };
+  
+  var self = this;
+
+  if (typeof (opts) !== "undefined") {
+    this.element      = $(opts.element);
+    this.items        = opts.items || [];
+    this.speed        = opts.speed || 10000;
+    this.running      = opts.running || false;
+
+    // just to define these. maybe javascript should use .h files :P
+    this.currentItem  = 0;
+    this.interval     = null;
+    this.tickerHeight = 0;
+  }
+  
+  this.setSize();
+  if (this.running) {
+    this.start();
+  }
+  tickers.push(this);
 }
 
 /* 
@@ -460,7 +462,7 @@ var videoPlayer = {
   */
   playVideos: function (opts) {
     "use strict";
-    if (typeof(opts) != "undefined") {
+    if (typeof(opts) !== "undefined") {
       this.list = opts.list || this.list;
       this.path = opts.path || this.path;
     }
@@ -490,7 +492,7 @@ var videoPlayer = {
     if (this.fnQueue.length > 0) { // if it's time to reload the page
       for (var i=0; i < this.fnQueue.length; i++) {
         this.fnQueue.pop()(); // double () to execute functions in queue
-      };
+      }
     }
     this.currentVideo += 1;
     if (this.currentVideo >= this.list.length) {
@@ -574,7 +576,7 @@ var layoutParser = {
       var width   = element.attr("data-width");
       var compute;
 
-      if(typeof(height) != "undefined") { // if there's data-height
+      if(typeof(height) !== "undefined") { // if there's data-height
         compute = (height/100 * (element.parent().height() - 1));
         element.height(compute + "px");
       } else {
@@ -620,13 +622,14 @@ var layoutParser = {
     
   */
   queueReloadData: function(time) {
-	  setTimeout(function() {
+    "use strict";
+    setTimeout(function() {
       videoPlayer.queueFn(function() {layoutParser.loadData();});
       // videoPlayer.queueFn(function() {Cocoa.log_("reload Data");});
-	  }, time);
-	  setTimeout(function() {
-		  layoutParser.queueReloadData(time);
-	  }, time);
+    }, time);
+    setTimeout(function() {
+      layoutParser.queueReloadData(time);
+    }, time);
   }, 
   
   /* 
@@ -667,7 +670,7 @@ var layoutParser = {
   */
   recursiveParse: function (obj, parent) {
     "use strict";
-    var tab = "  ";
+    // var tab = "  ";
     
     // if (typeof(level) === "undefined") {
     //   level = 0;
@@ -774,7 +777,7 @@ var imdbAPI = {
   */
   get_movie: function (ev, callback) {
     "use strict";
-    var req = $.ajax({
+    $.ajax({
       url : "http://www.imdbapi.com/",
       data: {t: ev.title},
       dataType : "jsonp",
@@ -793,7 +796,7 @@ var imdbAPI = {
           callback(ev);
         }
       },
-      error: function (data) {
+      error: function () {
         callback(ev);
       }
     });
@@ -978,11 +981,11 @@ var CalData = {
       $(element).html("");
       for (var i = 0; i < events.length; i++) {
         var item = events[i];
-        if (movies === true) {
-          imdbAPI.get_movie(item, this.makeCallback(ticker, item, format, start_time, end_time));
-        } else {
+        // if (movies === true) {
+          // imdbAPI.get_movie(item, this.makeCallback(ticker, item, format, start_time, end_time));
+        // } else {
           ticker.addItem(this.ticker_html(item, format, start_time, end_time));
-        }
+        // }
       }
     } 
   }, 
@@ -1203,7 +1206,7 @@ var YConnect = {
       callback(events);
     });
   
-    req.error(function (data) {
+    req.error(function () {
         // console.log('Error getting data');
     });
     // }
