@@ -498,7 +498,7 @@ var videoPlayer = {
     if (this.currentVideo >= this.list.length) {
       this.currentVideo = 0;
     }
-    this.element.attr("src", this.path + this.list[this.currentVideo] + this.format);
+    this.element.attr("src", this.path + this.list[this.currentVideo]);
     this.element[0].play();
   },
   
