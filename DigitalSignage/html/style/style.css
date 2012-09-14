@@ -1,19 +1,196 @@
-html{height:100%;margin:0;padding:0;background:url(../images/bg.jpg) no-repeat top left fixed;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover;overflow:hidden;}
-body{width:100%;height:100%;font-family:"Myriad Pro","Myriad Std","Myriad",sans-serif;font-size:8px;line-height:1.2em;display:-webkit-box;display:-moz-box;display:box;-webkit-box-orient:horizontal;-moz-box-orient:horizontal;box-orient:horizontal;-webkit-box-pack:start;-moz-box-pack:start;box-pack:start;-webkit-box-align:stretch;-moz-box-align:stretch;box-align:stretch;}
-body *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
-#wrapper{margin-top:0;display:-webkit-box;display:-moz-box;display:box;-webkit-box-orient:horizontal;-moz-box-orient:horizontal;box-orient:horizontal;-webkit-box-pack:start;-moz-box-pack:start;box-pack:start;-webkit-box-align:stretch;-moz-box-align:stretch;box-align:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;}
-#main{margin:1em;font-size:1.5em;display:-webkit-box;display:-moz-box;display:box;-webkit-box-orient:horizontal;-moz-box-orient:horizontal;box-orient:horizontal;-webkit-box-pack:start;-moz-box-pack:start;box-pack:start;-webkit-box-align:stretch;-moz-box-align:stretch;box-align:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;}
-.hbox{display:-webkit-box;display:-moz-box;display:box;-webkit-box-orient:horizontal;-moz-box-orient:horizontal;box-orient:horizontal;-webkit-box-pack:start;-moz-box-pack:start;box-pack:start;-webkit-box-align:stretch;-moz-box-align:stretch;box-align:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;width:100%;}
-#main>div{background-color:rgba(0, 0, 0, 0.5);color:#fff;overflow:hidden;}#main>div#separator{background-color:transparent;font-size:1px;}
-#main>div:last-child .content{font-size:0.8em;}
-#main>div h1{background-color:rgba(0, 0, 0, 0.5);font-weight:bold;font-size:1.3em;padding:0.7em 0.6em 0.6em;margin:0;}
-#main>div .content{padding:0.5em;font-size:1em;line-height:1em;}#main>div .content table td{padding:0.2em;vertical-align:top;}
-#main>div .content div{display:block;margin-bottom:0.3em;}#main>div .content div:last-child{margin-bottom:0;}
-#main>div .content .title{font-weight:bold;}
-#main>div .content .time{font-size:0.8em;line-height:1em;}
-#main>div .content .description{font-size:0.6em;line-height:1em;}
-#main>div .content img{float:left;margin-right:1em;}
-#video{background-color:#000;}#video video{width:100%;}
-.container{-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;background-color:rgba(0, 0, 0, 0.5);color:#FFF;}.container .content{padding:0.5em;font-size:1.2em;line-height:1em;}
-video{-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;}
-#timewidget{display:block;position:absolute;top:0;right:1.2em;color:#FFF;font-size:1em;line-height:3em;}
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: url(../images/bg.jpg) no-repeat top left fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: "Myriad Pro","Myriad Std","Myriad",sans-serif;
+    font-size: 8px;
+    line-height: 1.2em;
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    box-orient: horizontal;
+    -webkit-box-pack: start;
+    -moz-box-pack: start;
+    box-pack: start;
+    -webkit-box-align: stretch;
+    -moz-box-align: stretch;
+    box-align: stretch;
+    cursor: none;
+}
+
+body * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#wrapper {
+    margin-top: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    box-orient: horizontal;
+    -webkit-box-pack: start;
+    -moz-box-pack: start;
+    box-pack: start;
+    -webkit-box-align: stretch;
+    -moz-box-align: stretch;
+    box-align: stretch;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+}
+
+#main {
+    margin: 1em;
+    font-size: 1.5em;
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    box-orient: horizontal;
+    -webkit-box-pack: start;
+    -moz-box-pack: start;
+    box-pack: start;
+    -webkit-box-align: stretch;
+    -moz-box-align: stretch;
+    box-align: stretch;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+}
+
+.hbox {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    box-orient: horizontal;
+    -webkit-box-pack: start;
+    -moz-box-pack: start;
+    box-pack: start;
+    -webkit-box-align: stretch;
+    -moz-box-align: stretch;
+    box-align: stretch;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    width: 100%;
+}
+
+#main>div {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    overflow: hidden;
+}
+
+#main>div#separator {
+    background-color: transparent;
+    font-size: 1px;
+}
+
+#main>div:last-child .content {
+    font-size: 0.8em;
+}
+
+#main>div h1 {
+    background-color: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    font-size: 1.3em;
+    padding: 0.7em 0.6em 0.6em;
+    margin: 0;
+}
+
+#main>div .content {
+    padding: 0.5em;
+    font-size: 1em;
+    line-height: 1em;
+}
+
+#main>div .content table td {
+    padding: 0.2em;
+    vertical-align: top;
+}
+
+#main>div .content div {
+    display: block;
+    margin-bottom: 0.3em;
+}
+
+#main>div .content div:last-child {
+    margin-bottom: 0;
+}
+
+#main>div .content .title {
+    font-weight: bold;
+}
+
+#main>div .content .time {
+    font-size: 0.8em;
+    line-height: 1em;
+}
+
+#main>div .content .description {
+    font-size: 0.6em;
+    line-height: 1em;
+}
+
+#main>div .content img {
+    float: left;
+    margin-right: 1em;
+}
+
+#video {
+    background-color: #000;
+}
+
+#video video {
+    width: 100%;
+}
+
+.container {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #FFF;
+}
+
+.container .content {
+    padding: 0.5em;
+    font-size: 1.2em;
+    line-height: 1em;
+}
+
+video {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+}
+
+#timewidget {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 1.2em;
+    color: #FFF;
+    font-size: 1em;
+    line-height: 3em;
+}
