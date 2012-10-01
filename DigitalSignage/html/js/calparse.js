@@ -50,11 +50,11 @@
 */
 
 /*
-  Array: tickers
-  A global array containing all the tickers being used on the page
+  Object: tickers
+  A global object containing all the tickers being used on the page. Key is the element, value is the object
 */
 
-var tickers = [];
+var tickers = {};
 
 /*
   Function: appendScript
@@ -420,7 +420,11 @@ function Ticker(opts) {
   if (this.running) {
     this.start();
   }
-  tickers.push(this);
+  if (typeof(tickers[opts.element]) !== "undefined") {
+      tickers[opts.element].stop();
+      delete(tickers[opts.element]);
+  }
+  tickers[opts.element] = this;
 }
 
 /* 
