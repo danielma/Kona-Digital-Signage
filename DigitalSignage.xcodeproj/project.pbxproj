@@ -154,7 +154,7 @@
 		70848BD9149ABB2F00B7DD9A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = 70848BDC149ABB2F00B7DD9A /* Build configuration list for PBXProject "DigitalSignage" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -282,6 +282,7 @@
 		70848C01149ABB3000B7DD9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DigitalSignage/DigitalSignage-Prefix.pch";
 				INFOPLIST_FILE = "DigitalSignage/DigitalSignage-Info.plist";
@@ -294,6 +295,7 @@
 		70848C02149ABB3000B7DD9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DigitalSignage/DigitalSignage-Prefix.pch";
 				INFOPLIST_FILE = "DigitalSignage/DigitalSignage-Info.plist";
