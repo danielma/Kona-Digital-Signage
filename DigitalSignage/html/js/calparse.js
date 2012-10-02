@@ -625,10 +625,10 @@ var layoutParser = {
     > videoPlayer.queueReloadData(15  * 60 * 100)
     
   */
-  queueReloadData: function(time) {
+  queueReloadData: function(time, exclude) {
     "use strict";
     setTimeout(function() {
-      videoPlayer.queueFn(function() {layoutParser.loadData();});
+      videoPlayer.queueFn(function() {layoutParser.loadData(layoutParser.layout, exclude);});
       // videoPlayer.queueFn(function() {Cocoa.log_("reload Data");});
     }, time);
     setTimeout(function() {
@@ -643,20 +643,30 @@ var layoutParser = {
     Parameters:
       
       obj {Object} - the object to load the data for (defaults to layoutParser.layout)
+      exclude {String or Array} - either single string or Array of ids to exclude from reloading (ex. "video")
     
   */
-  loadData: function (obj) {
+  loadData: function (obj, exclude) {
     "use strict";
     if (typeof(obj) === "undefined") {
       obj = this.layout;
     }
+    if (typeof(exclude) === "undefined") {
+      exclude = [];
+    } else if (typeof(exclude) === "string") {
+      exclude = [exclude];
+    }
     for (var i = 0; i < obj.length; i++) {
       var object = obj[i];
       if (typeof(object.content) === "function") {
-        object.content();
-      }
-      if (typeof(object.content) === "object") {
-        this.loadData(object.content);
+        if ($.inArray(object.id, exclude) === -1) {
+//          console.log(object.id + " loading data");
+          object.content();
+        }
+      } else if (typeof(object.content) === "object") {
+//        console.log(object.id + " is an object");
+//        console.log(object.content);
+        this.loadData(object.content, exclude);
       }
     } // for()   
     

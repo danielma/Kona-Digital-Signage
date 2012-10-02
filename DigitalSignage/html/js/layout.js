@@ -301,7 +301,7 @@ var layout = [{
             {
               id: "video",
               size: 70,
-              content: function() {videoPlayer.playVideos({path: "http://gniux.uofnkona.edu/videos/", list: ['1.m4v', '2.m4v', '3.m4v', '4.m4v']})}
+              content: function() {videoPlayer.playVideos({path: "http://gniux.uofnkona.edu/videos/", list: ['1.m4v', '2.m4v', '3.m4v', '4.m4v', '5.m4v', '6.m4v', '7.m4v', '8.m4v']})}
             },
             {
               id: "bottomrow",
