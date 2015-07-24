@@ -1239,6 +1239,10 @@ var YConnect = {
   // }, 
 };
 
+function setGAPIKey() {
+  gapi.client.setApiKey(GCal.api_key);
+}
+
 /*
   Class: GCal
   Contains methods for fetching data from Google Calendar and creating <Event>s
@@ -1263,7 +1267,7 @@ var GCal = {
     <Google Data Javascript API at http://code.google.com/p/google-api-javascript-client/>
   */
 
-  service: new google.gdata.calendar.CalendarService('konaSignage-app'),
+  api_key: 'AIzaSyBqESjcUQVHE1HDahqvSXZMpF3qR9P4OH8',
   kona_schedule: "or2b5kqjl58ndf8ien8atkcplg%40group.calendar.google.com",
   kona_events: "o2jfjbba7bcrhkk5p3scfqj7vc%40group.calendar.google.com",
   mauka_theater: "oebubbrli984mh257hd986td80%40group.calendar.google.com",
@@ -1293,9 +1297,7 @@ var GCal = {
 		if (typeof(failcount) === "undefined") {
 			failcount = 0;
 		}
-    var uri = "https://www.google.com/calendar/feeds/" + name + "/public/full-noattendees";
 
-    var query = new google.gdata.calendar.CalendarEventQuery(uri);
     var startMin, startMax;
 
     // options = $.extend(this.default_opts, options);
@@ -1322,51 +1324,63 @@ var GCal = {
     }
 
     if (time.length > 1) { // if time is more than just one day
-      startMin = new google.gdata.DateTime(time[0]);
+      startMin = time[0];
       if (time[1]) {
-        startMax = new google.gdata.DateTime(time[1].clone().set({hour: 23, minute: 59, second: 59}));
+        startMax = time[1].clone().set({hour: 23, minute: 59, second: 59});
       } else {
         startMax = null;
       }
     } else {
-      startMin = new google.gdata.DateTime(time[0]);
-      startMax = new google.gdata.DateTime(time[0].clone().set({hour: 23, minute: 59, second: 59}));
+      startMin = time[0];
+      startMax = time[0].clone().set({hour: 23, minute: 59, second: 59});
     }
 
-    query.setOrderBy("starttime");
-    query.setSortOrder("ascending");
-    query.setSingleEvents(true);
-    query.setMinimumStartTime(startMin);
-    query.setMaximumStartTime(startMax);
+    var events = [];
 
-    var events = [];		
+    var request = gapi.client.request({
+      path: '/calendar/v3/calendars/' + name + '/events',
+      params: {
+        timeMin:      startMin.toISOString(),
+        timeMax:      startMax.toISOString(),
+        singleEvents: true,
+        orderBy:      'startTime'
+      }
+    });
 
-    this.service.getEventsFeed(query, function (data) {
-      var entries = data.feed.entry;
+    request.then(function(data) {
+      var entries = data.result.items;
 
       for (var i = 0; i < entries.length; i++) {
         var eventEntry = entries[i];
         // var eventTitle = eventEntry.getTitle().getText();
         // console.log('Event title = ' + eventTitle);
         events.push(new Event({
-          title: eventEntry.getTitle().getText(),
-          start_time: google.gdata.DateTime.fromIso8601(eventEntry.getTimes()[0].startTime).date,
-          end_time: google.gdata.DateTime.fromIso8601(eventEntry.getTimes()[0].endTime).date,
-          location: eventEntry.getLocations()[0].valueString,
-          description: eventEntry.getSummary()
+          title: eventEntry.summary,
+          start_time: GCal.parse_google_date(eventEntry.start.dateTime),
+          end_time: GCal.parse_google_date(eventEntry.end.dateTime),
+          location: eventEntry.location,
+          description: eventEntry.description
         }));
       }
       // console.log(events);
       // return events;
       callback(events);
     },
-		function() {
-			if (failcount >= 3) {
-				videoPlayer.queueRefresh();
-			} else {
-				GCal.get_calendar(name, range, callback, failcount + 1);
-			}
-		}); // if there's a problem, you know i'll solve it (aka try again...)
+    function() {
+      if (failcount >= 3) {
+        videoPlayer.queueRefresh();
+      } else {
+        GCal.get_calendar(name, range, callback, failcount + 1);
+      }
+    }); // if there's a problem, you know i'll solve it (aka try again...)
+  },
+
+  /*
+  Function: parse_google_date
+  */
+
+  parse_google_date: function(dateString) {
+    return Date.parse(dateString.substring(0, 19));
   },
 
   /*
