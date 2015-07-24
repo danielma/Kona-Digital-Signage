@@ -320,7 +320,7 @@ var layout = [{
                   id: "events",
                   size: 50,
                   title: "Upcoming Events",
-                  content: function() {GCal.get_calendar(GCal.kona_events, "week", function(data) {
+                  content: function() {GCal.get_calendar('3dbt5d9qe5ct57f1ek1mvqh5qo%40group.calendar.google.com', "week", function(data) {
     CalData.write_ticker(data, "#events .content", "s(dddd, MMMM d\nh:mm tt) - e(h:mm tt)");
     });}
                 }
@@ -351,7 +351,7 @@ var layout = [{
               title: "Today's Schedule",
               size: 33,
               content: function() {
-                GCal.get_two_calendars(GCal.kona_events, GCal.kona_schedule, "today", function(data) {
+                GCal.get_calendar('3dbt5d9qe5ct57f1ek1mvqh5qo%40group.calendar.google.com', "today", function(data) {
                   CalData.write_table(data, "#events-today .content", "s(h:mm) - e(h:mm tt)|-|t()")
                 });
               }
@@ -360,7 +360,8 @@ var layout = [{
               id: "events-tomorrow",
               title: "Tomorrow's Schedule",
               size: 33, 
-              content: function() {GCal.get_two_calendars(GCal.kona_events, GCal.kona_schedule, "tomorrow", function(data) {
+              content: function() {
+                GCal.get_calendar('3dbt5d9qe5ct57f1ek1mvqh5qo%40group.calendar.google.com', "tomorrow", function(data) {
     CalData.write_table(data, "#events-tomorrow .content", "s(h:mm) - e(h:mm tt)|-|t()")
     }); }
             }
