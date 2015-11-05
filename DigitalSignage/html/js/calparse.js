@@ -208,6 +208,7 @@ function Event(opts) {
     this.location     = opts.location || "";
     this.description  = opts.description || "";
     this.attachment   = opts.attachment;
+    this.all_day      = !!opts.all_day
   }
 }
 
@@ -218,7 +219,7 @@ Event.fromGoogleEvent = function(event) {
     end_time: GCal.parse_google_date(event.end.dateTime || event.end.date),
     location: event.location,
     description: event.description,
-    all_day: !!event.start.date
+    all_day: event.start.date
   })
 }
 
@@ -884,17 +885,7 @@ var CalData = {
       // console.log('Event title = ' + eventTitle);
       // console.log(html);
       // console.log(item);
-      var newstr = "";
-      // console.log(format)
-      newstr = format.replace(/s\((.*?)\)/, item.start_time.toString(start_time));
-      // console.log(newstr)
-      newstr = newstr.replace(/e\((.*?)\)/, item.end_time.toString(end_time));
-      // console.log(newstr);
-      newstr = newstr.replace(/t\(\)/, item.title);
-      // console.log(newstr)
-      newstr = newstr.replace(/d\(\)/, item.description);
-      newstr = newstr.replace(/\n/g, "<br/>");
-      newstr = newstr.replace(/\|/g, "</td><td>");
+      var newstr = this.timeString(item, format, start_time, end_time)
       // console.log(newstr)
       // newstr = newstr.replace(/ /g, "&nbsp;");
       html += "<tr><td>" + newstr + "</td></tr>";
@@ -936,20 +927,7 @@ var CalData = {
   ticker_html: function (item, format, start_time, end_time) {
     "use strict";
     var html = "";
-    var timestr = "";
-    // console.log("format = " + format)
-    // console.log("start_time = " + start_time)
-    timestr = format.replace(/s\(([\s\S]*?)\)/gm, item.start_time.toString(start_time));
-    // console.log(newstr)
-    timestr = timestr.replace(/e\(([\s\S]*?)\)/gm, item.end_time.toString(end_time));
-    timestr = timestr.replace(/\n/g, "<br/>");
-    // console.log(newstr);
-    // newstr = newstr.replace(/t\(\)/, ev.title);
-    // console.log(newstr)
-    // newstr = newstr.replace(/d\(\)/, ev.description);
-    // newstr = newstr.replace(/\n/g, "<br/>");
-    // console.log(newstr)
-    // newstr = newstr.replace(/ /g, "&nbsp;");
+    var timestr = this.timeString(item, format, start_time, end_time);
     html += "<div class='item' style='display: none'>";
     if (item.attachment) {
       html += "<img src='" + item.attachment + "' />";
@@ -960,7 +938,28 @@ var CalData = {
     html += "</div>";
 
     return html;
-  }, 
+  },
+
+  timeMatch: /hh?:mm?( tt)?/,
+
+  timeString: function(item, format, startFormat, endFormat) {
+    if (item.all_day) {
+      startFormat = startFormat.replace(this.timeMatch, '')
+      endFormat = endFormat.replace(this.timeMatch, '')
+    }
+
+    var formattedStartTime = startFormat ? item.start_time.toString(startFormat) : 'all day'
+    var formattedEndTime = endFormat ? item.end_time.toString(endFormat) : ''
+
+    return format
+      .replace(/s\([^\)]*\)/gm, formattedStartTime)
+      .replace(/e\([^\)]*\)/gm, formattedEndTime)
+      .replace(/t\(\)/, item.title)
+      .replace(/d\(\)/, item.description)
+      .replace(/\|/g, "</td><td>")
+      .replace(/\n/g, "<br/>")
+  },
+
 
   /*
     Function: write_ticker
