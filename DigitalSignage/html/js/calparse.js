@@ -211,6 +211,17 @@ function Event(opts) {
   }
 }
 
+Event.fromGoogleEvent = function(event) {
+  return new Event({
+    title: event.summary,
+    start_time: GCal.parse_google_date(event.start.dateTime || event.start.date),
+    end_time: GCal.parse_google_date(event.end.dateTime || event.end.date),
+    location: event.location,
+    description: event.description,
+    all_day: !!event.start.date
+  })
+}
+
 /*
   Class: Ticker
   A class that contains data and manages rotation for an <Event> ticker
@@ -1350,20 +1361,10 @@ var GCal = {
     request.then(function(data) {
       var entries = data.result.items;
 
-      for (var i = 0; i < entries.length; i++) {
-        var eventEntry = entries[i];
-        // var eventTitle = eventEntry.getTitle().getText();
-        // console.log('Event title = ' + eventTitle);
-        events.push(new Event({
-          title: eventEntry.summary,
-          start_time: GCal.parse_google_date(eventEntry.start.dateTime),
-          end_time: GCal.parse_google_date(eventEntry.end.dateTime),
-          location: eventEntry.location,
-          description: eventEntry.description
-        }));
-      }
-      // console.log(events);
-      // return events;
+      var events = entries.map(function(event) {
+        return Event.fromGoogleEvent(event)
+      })
+
       callback(events);
     },
     function() {
