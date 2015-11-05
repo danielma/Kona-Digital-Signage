@@ -208,7 +208,19 @@ function Event(opts) {
     this.location     = opts.location || "";
     this.description  = opts.description || "";
     this.attachment   = opts.attachment;
+    this.all_day      = !!opts.all_day
   }
+}
+
+Event.fromGoogleEvent = function(event) {
+  return new Event({
+    title: event.summary,
+    start_time: GCal.parse_google_date(event.start.dateTime || event.start.date),
+    end_time: GCal.parse_google_date(event.end.dateTime || event.end.date),
+    location: event.location,
+    description: event.description,
+    all_day: event.start.date
+  })
 }
 
 /*
@@ -852,48 +864,25 @@ var CalData = {
     // Start Time: s(hh:mm:t)
     // End Time: e(hh:mm:t)
     // Column break: |
-    var start_time, end_time;
 
     var fmt = this.auto_format(format);
 
-    format      = fmt[0];
-    start_time  = fmt[1];
-    end_time    = fmt[2];
+    format          = fmt[0];
+    var startFormat = fmt[1];
+    var endFormat   = fmt[2];
 
-    var html = "<table>";
-    // console.log(data.feed);
-    // console.log(element);
-    if (events.length === 0) {
-      $(element).html("No events");
-      return;
-    }
-    for (var i = 0; i < events.length; i++) {
-      var item = events[i];
-      // var eventTitle = eventEntry.getTitle().getText();
-      // console.log('Event title = ' + eventTitle);
-      // console.log(html);
-      // console.log(item);
-      var newstr = "";
-      // console.log(format)
-      newstr = format.replace(/s\((.*?)\)/, item.start_time.toString(start_time));
-      // console.log(newstr)
-      newstr = newstr.replace(/e\((.*?)\)/, item.end_time.toString(end_time));
-      // console.log(newstr);
-      newstr = newstr.replace(/t\(\)/, item.title);
-      // console.log(newstr)
-      newstr = newstr.replace(/d\(\)/, item.description);
-      newstr = newstr.replace(/\n/g, "<br/>");
-      newstr = newstr.replace(/\|/g, "</td><td>");
-      // console.log(newstr)
-      // newstr = newstr.replace(/ /g, "&nbsp;");
-      html += "<tr><td>" + newstr + "</td></tr>";
+    var html = "No events"
+
+    if (events.length > 0) {
+      html = ["<table>",
+              events.map(function(event) {
+                return ["<tr><td>",
+                        CalData.timeString(event, format, startFormat, endFormat),
+                        "</td></tr>"].join('')
+              }).join(''),
+              "</table>"].join('')
     }
 
-    html += "</table>";
-
-    // console.log(html);
-    // console.log("$(" + element + ").append(" + html + ")")
-    // console.log("putting table into" + element)
     $(element).html(html);
   },
 
@@ -925,20 +914,7 @@ var CalData = {
   ticker_html: function (item, format, start_time, end_time) {
     "use strict";
     var html = "";
-    var timestr = "";
-    // console.log("format = " + format)
-    // console.log("start_time = " + start_time)
-    timestr = format.replace(/s\(([\s\S]*?)\)/gm, item.start_time.toString(start_time));
-    // console.log(newstr)
-    timestr = timestr.replace(/e\(([\s\S]*?)\)/gm, item.end_time.toString(end_time));
-    timestr = timestr.replace(/\n/g, "<br/>");
-    // console.log(newstr);
-    // newstr = newstr.replace(/t\(\)/, ev.title);
-    // console.log(newstr)
-    // newstr = newstr.replace(/d\(\)/, ev.description);
-    // newstr = newstr.replace(/\n/g, "<br/>");
-    // console.log(newstr)
-    // newstr = newstr.replace(/ /g, "&nbsp;");
+    var timestr = this.timeString(item, format, start_time, end_time);
     html += "<div class='item' style='display: none'>";
     if (item.attachment) {
       html += "<img src='" + item.attachment + "' />";
@@ -949,7 +925,28 @@ var CalData = {
     html += "</div>";
 
     return html;
-  }, 
+  },
+
+  timeMatch: /hh?:mm?( tt)?/,
+
+  timeString: function(item, format, startFormat, endFormat) {
+    if (item.all_day) {
+      startFormat = startFormat.replace(this.timeMatch, '')
+      endFormat = endFormat.replace(this.timeMatch, '')
+    }
+
+    var formattedStartTime = startFormat ? item.start_time.toString(startFormat) : 'all day'
+    var formattedEndTime = endFormat ? item.end_time.toString(endFormat) : ''
+
+    return format
+      .replace(/s\([^\)]*\)/gm, formattedStartTime)
+      .replace(/e\([^\)]*\)/gm, formattedEndTime)
+      .replace(/t\(\)/, item.title)
+      .replace(/d\(\)/, item.description)
+      .replace(/\|/g, "</td><td>")
+      .replace(/\n/g, "<br/>")
+  },
+
 
   /*
     Function: write_ticker
@@ -1350,20 +1347,10 @@ var GCal = {
     request.then(function(data) {
       var entries = data.result.items;
 
-      for (var i = 0; i < entries.length; i++) {
-        var eventEntry = entries[i];
-        // var eventTitle = eventEntry.getTitle().getText();
-        // console.log('Event title = ' + eventTitle);
-        events.push(new Event({
-          title: eventEntry.summary,
-          start_time: GCal.parse_google_date(eventEntry.start.dateTime),
-          end_time: GCal.parse_google_date(eventEntry.end.dateTime),
-          location: eventEntry.location,
-          description: eventEntry.description
-        }));
-      }
-      // console.log(events);
-      // return events;
+      var events = entries.map(function(event) {
+        return Event.fromGoogleEvent(event)
+      })
+
       callback(events);
     },
     function() {
