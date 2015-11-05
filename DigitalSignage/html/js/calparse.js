@@ -864,38 +864,25 @@ var CalData = {
     // Start Time: s(hh:mm:t)
     // End Time: e(hh:mm:t)
     // Column break: |
-    var start_time, end_time;
 
     var fmt = this.auto_format(format);
 
-    format      = fmt[0];
-    start_time  = fmt[1];
-    end_time    = fmt[2];
+    format          = fmt[0];
+    var startFormat = fmt[1];
+    var endFormat   = fmt[2];
 
-    var html = "<table>";
-    // console.log(data.feed);
-    // console.log(element);
-    if (events.length === 0) {
-      $(element).html("No events");
-      return;
-    }
-    for (var i = 0; i < events.length; i++) {
-      var item = events[i];
-      // var eventTitle = eventEntry.getTitle().getText();
-      // console.log('Event title = ' + eventTitle);
-      // console.log(html);
-      // console.log(item);
-      var newstr = this.timeString(item, format, start_time, end_time)
-      // console.log(newstr)
-      // newstr = newstr.replace(/ /g, "&nbsp;");
-      html += "<tr><td>" + newstr + "</td></tr>";
+    var html = "No events"
+
+    if (events.length > 0) {
+      html = ["<table>",
+              events.map(function(event) {
+                return ["<tr><td>",
+                        CalData.timeString(event, format, startFormat, endFormat),
+                        "</td></tr>"].join('')
+              }).join(''),
+              "</table>"].join('')
     }
 
-    html += "</table>";
-
-    // console.log(html);
-    // console.log("$(" + element + ").append(" + html + ")")
-    // console.log("putting table into" + element)
     $(element).html(html);
   },
 
